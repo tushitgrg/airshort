@@ -40,7 +40,7 @@ const CardTitle = React.forwardRef<
       className
     )}
     {...props}
-  />
+  > {props.children || "Default Heading Text"}</h3>
 ))
 CardTitle.displayName = "CardTitle"
 
