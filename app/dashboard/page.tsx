@@ -63,7 +63,7 @@ export default function Dashboard() {
   const checkPass = ()=>{
     let encryptedPhrase =""
     if (typeof window !== 'undefined') {
- encryptedPhrase =localStorage.getItem('encryptedPhrase');}
+ encryptedPhrase =localStorage.getItem('encryptedPhrase')|| "";}
     let v;
     try{
       v = CryptoJS.AES.decrypt(encryptedPhrase, pass).toString(CryptoJS.enc.Utf8);
