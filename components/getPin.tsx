@@ -26,7 +26,7 @@ if(pass.length>=6){
     }
 
 useEffect(()=>{
-  if(err){
+  if(err.length>1){
     toast({title:err})
   }
   },[err])
