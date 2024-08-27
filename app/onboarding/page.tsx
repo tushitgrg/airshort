@@ -41,7 +41,7 @@ export default function OnBoarding() {
   }
   return (
    <>
-<p>Something is wrong, Maybe Refresh?</p>
+<p>Loading....</p>
    </>
    
   )
