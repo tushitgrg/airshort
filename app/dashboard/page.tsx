@@ -56,6 +56,7 @@ import GetPin from "@/components/getPin";
 import CryptoJS from 'crypto-js'
 import { Router } from "next/router";
 export default function Dashboard() {
+  if (typeof window === 'undefined')return <h1>error</h1>;
   const [pass,setpass] = useState("");
   const [err,setErr] = useState("");
   const [addresses, setaddresses] = useState([]);
@@ -69,8 +70,11 @@ export default function Dashboard() {
       v = CryptoJS.AES.decrypt(encryptedPhrase, pass).toString(CryptoJS.enc.Utf8);
     
       if(v){
-      sessionStorage.setItem('decryptedPhrase',v);
-     window.location.reload()
+       
+          sessionStorage.setItem('decryptedPhrase',v);
+          window.location.reload()
+        
+     
       }else{
        
         setErr("InCorrect")

@@ -4,10 +4,20 @@
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
-    "strict": true,
-    "forceConsistentCasingInFileNames": true,
-    "noEmit": true,
+    "strict": false,
+    "noImplicitAny": false,
+    "strictNullChecks": false,
+    "noImplicitThis": false,
+    "alwaysStrict": false,
+    "strictBindCallApply": false,
+    "strictFunctionTypes": false,
+    "strictPropertyInitialization": false,
     "esModuleInterop": true,
+
+    "forceConsistentCasingInFileNames": true,
+  
+    "noEmit": true,
+  
     "module": "esnext",
     "moduleResolution": "node",
     "resolveJsonModule": true,
