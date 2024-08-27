@@ -36,14 +36,18 @@ import { toast } from "./ui/use-toast"
 
 export default function AllWallets({setaddresses,seedphrase,setbalances,addresses}) {
   let number = "1";
+  const [num,setnum] = React.useState(number);
   React.useEffect(()=>{
      number = localStorage.getItem("number");
+     if(number){
+      setnum(number);
+     }
   },[])
     const [isdev,setisdev] = React.useState(false)
     const [frameworks, setFramework] = React.useState([])
   const [open, setOpen] = React.useState(false)
   const [value, setValue] = React.useState("1")
-  const [num,setnum] = React.useState(number);
+
   React.useEffect(()=>{
     localStorage.setItem("number",num)
   setFramework([]);
