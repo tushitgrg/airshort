@@ -51,47 +51,56 @@ import { SiSolana } from "react-icons/si";
 import { FaEthereum } from "react-icons/fa";
 import {Snippet} from "@nextui-org/snippet";
 import AllWallets from "@/components/AllWallets";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import GetPin from "@/components/getPin";
 import CryptoJS from 'crypto-js'
 import { Router } from "next/router";
+
 export default function Dashboard() {
-  const [pass,setpass] = useState("");
-  const [err,setErr] = useState("");
+  const [pass, setPass] = useState("");
+  const [err, setErr] = useState("");
   const [addresses, setaddresses] = useState([]);
-  const [balances,setbalances] = useState({"eth":null, "sol":null})
-  if (typeof window === 'undefined')return <h1>error</h1>;
+  const [balances, setbalances] = useState({ eth: null, sol: null });
+  const [isClient, setIsClient] = useState(false);
 
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
-  const checkPass = ()=>{
-    let encryptedPhrase =""
-    if (typeof window !== 'undefined') {
- encryptedPhrase =localStorage.getItem('encryptedPhrase')|| "";}
+  const checkPass = () => {
+    if (!isClient) return;
+
+    let encryptedPhrase = localStorage.getItem('encryptedPhrase') || "";
     let v;
-    try{
+    try {
       v = CryptoJS.AES.decrypt(encryptedPhrase, pass).toString(CryptoJS.enc.Utf8);
-    
-      if(v){
-       
-          sessionStorage.setItem('decryptedPhrase',v);
-          window.location.reload()
-        
-     
-      }else{
-       
-        setErr("InCorrect")
+      if (v) {
+        sessionStorage.setItem('decryptedPhrase', v);
+        window.location.reload();
+      } else {
+        setErr("InCorrect");
       }
-    }catch(err){
-        setErr("InCorrect")
+    } catch (err) {
+      setErr("InCorrect");
     }
-  }
+  };
 
+  useEffect(() => {
+    if (!isClient) return;
 
-    if(!localStorage.getItem('encryptedPhrase') || ! localStorage.getItem('number')) redirect('/onboarding');
-    if(!sessionStorage.getItem('decryptedPhrase')){
-return <GetPin pass={pass} setpass={setpass} err={err} checkPass={checkPass} />
-    }else{
+    if (!localStorage.getItem('encryptedPhrase') || !localStorage.getItem('number')) {
+      redirect('/onboarding');
+    }
+    if (!sessionStorage.getItem('decryptedPhrase')) {
+      return;
+    }
+  }, [isClient]);
 
+  if (!isClient) return null; // Prevents rendering until client-side setup is complete
+
+  if (!sessionStorage.getItem('decryptedPhrase')) {
+    return <GetPin pass={pass} setpass={setPass} err={err} checkPass={checkPass} />;
+  } else {
     
   return (
     <div className="flex max-h-screen w-full flex-col">
@@ -319,3 +328,4 @@ No Transaction Right Now!
     </div>
   )}
 }
+

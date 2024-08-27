@@ -28,13 +28,17 @@ import { Label } from "./ui/label"
 import { Switch } from "@/components/ui/switch"
 import { toast } from "./ui/use-toast"
 
-let number = localStorage.getItem("number");
+
+
 
 
 
 
 export default function AllWallets({setaddresses,seedphrase,setbalances,addresses}) {
-  
+  let number = "1";
+  React.useEffect(()=>{
+     number = localStorage.getItem("number");
+  },[])
     const [isdev,setisdev] = React.useState(false)
     const [frameworks, setFramework] = React.useState([])
   const [open, setOpen] = React.useState(false)
