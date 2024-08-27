@@ -34,12 +34,14 @@ export default function OnBoarding() {
     if (typeof window !== 'undefined') {
     localStorage.setItem('encryptedPhrase', encryptedPhrase);
   
-    localStorage.setItem('number', "1");}
+    localStorage.setItem('number', "1");
+  }
+  window.location.reload()
+  
   }
   return (
    <>
-<p> {phrase}</p>
-<p> {pass}</p>
+<p>Something is wrong, Maybe Refresh?</p>
    </>
    
   )
