@@ -56,11 +56,13 @@ import GetPin from "@/components/getPin";
 import CryptoJS from 'crypto-js'
 import { Router } from "next/router";
 export default function Dashboard() {
-  if (typeof window === 'undefined')return <h1>error</h1>;
   const [pass,setpass] = useState("");
   const [err,setErr] = useState("");
   const [addresses, setaddresses] = useState([]);
   const [balances,setbalances] = useState({"eth":null, "sol":null})
+  if (typeof window === 'undefined')return <h1>error</h1>;
+
+
   const checkPass = ()=>{
     let encryptedPhrase =""
     if (typeof window !== 'undefined') {
