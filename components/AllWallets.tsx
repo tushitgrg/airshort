@@ -71,7 +71,7 @@ export default function AllWallets({setaddresses,seedphrase,setbalances,addresse
 const requestairdrop =async ()=>{
    
  try{
-    const connection = new Connection("https://api.testnet.solana.com", "confirmed");
+    const connection = new Connection("https://api.devnet.solana.com", "confirmed");
     const publicKey = new PublicKey(addresses[1]);
     const signature = await connection.requestAirdrop(publicKey, LAMPORTS_PER_SOL);
   
@@ -83,9 +83,9 @@ const requestairdrop =async ()=>{
       });
       toast({title:"Airdrop Successful!"})
      
- }catch{
+ }catch(error){
     toast({title:"Airdrop Unsuccessful!"})
-
+console.log(error)
  }
    
 

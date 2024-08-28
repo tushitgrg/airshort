@@ -70,3 +70,10 @@
     @apply bg-background text-foreground;
   }
 } */
+
+.loader{
+  width: 100px;
+  height: 100px;
+  margin: auto;
+  background-image: url('/my-nextui-app/public/preloaderr.gif');
+}
